@@ -7,75 +7,464 @@
     layer(fontAwesome);
 
 @layer myStyle {
+
     @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
-    html,
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
+
+    html,body,h1,h2,h3,h4,h5,h6,p {
         font-family: "Space Grotesk", sans-serif;
     }
 
-    .profile-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 16px;
-    align-items: stretch;
+
+    /* GLOBAL BODY */
+
+    body {
+        margin: 0;
+
+        background-color: #f1f1f1;
+        color: #444444;
+
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
     }
+
+
+    /* PAGE CONTAINER */
+
+    .page-container {
+        transition: background-color 0.3s ease;
+    }
+
+
+    /* PROFILE GRID */
+
+    .profile-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 2fr;
+
+        gap: 16px;
+
+        align-items: stretch;
+    }
+
 
     .profile-left,
     .profile-right {
         display: grid;
+
         grid-template-rows: repeat(3, auto);
+
         gap: 16px;
     }
 
+
+    /* CARDS */
+
     .profile-card {
         height: 100%;
+
         box-sizing: border-box;
+
+        background-color: #ffffff;
+
+        color: #444444;
+
+        border: 1px solid transparent;
+
+        border-radius: 2px;
+
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
     }
 
-    @media (max-width: 601px) {
-        .profile-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+
+    /* PROFILE IMAGE */
 
     .profile-image-container {
         position: relative;
+
         width: 100%;
+
         height: 320px;
+
         overflow: hidden;
     }
+
 
     .profile-image {
         width: 100%;
         height: 100%;
+
         object-fit: cover;
+
         object-position: top center;
+
         display: block;
+
+        transition: filter 0.3s ease;
     }
+
 
     .profile-name {
         position: absolute;
+
         bottom: 0;
         left: 0;
+
         width: 100%;
+
         box-sizing: border-box;
+
         padding: 40px 16px 16px;
-        color: white;
+
+        color: #ffffff;
+
         background: linear-gradient(
             transparent,
             rgba(0, 0, 0, 0.75)
         );
     }
 
+
     .profile-name h2 {
         margin: 0;
+
+        color: #ffffff;
+    }
+
+
+    /* CONTACT INFORMATION */
+
+    .contact-information p {
+        line-height: 1.6;
+    }
+
+
+    /* ACCENT COLOR */
+
+    .accent {
+        color: #009688 !important;
+    }
+
+
+    .secondary-heading {
+        color: #555555;
+    }
+
+
+    /* SKILL BARS */
+
+    .skill-background {
+        background-color: #eeeeee;
+
+        margin-bottom: 16px;
+    }
+
+
+    .skill-progress {
+        background-color: #009688;
+
+        color: #ffffff;
+
+        min-width: 30px;
+
+        transition:
+            width 0.5s ease,
+            background-color 0.3s ease;
+    }
+
+
+    /* HORIZONTAL RULE */
+
+    .profile-card hr {
+        border: 0;
+
+        border-top: 1px solid #dddddd;
+
+        margin: 20px 0;
+    }
+
+
+    /* FOOTER */
+
+    .profile-footer {
+        background-color: #009688;
+
+        color: #ffffff;
+
+        padding-top: 24px;
+        padding-bottom: 24px;
+
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
+    }
+
+
+    .profile-footer a {
+        color: #ffffff;
+
+        text-decoration: none;
+
+        margin: 0 6px;
+    }
+
+
+    /* THEME TOGGLE */
+
+    .theme-toggle-checkbox {
+        position: absolute;
+
+        opacity: 0;
+
+        width: 0;
+        height: 0;
+
+        pointer-events: none;
+    }
+
+
+    .theme-toggle-button {
+        position: fixed;
+
+        top: 20px;
+        right: 20px;
+
+        z-index: 1000;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 10px 16px;
+
+        background-color: #ffffff;
+
+        color: #333333;
+
+        border: 1px solid #dddddd;
+
+        border-radius: 30px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.15);
+
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease,
+            transform 0.2s ease;
+    }
+
+
+    .theme-toggle-button:hover {
+        transform: translateY(-2px);
+    }
+
+
+    .theme-toggle-button:active {
+        transform: translateY(0);
+    }
+
+
+    /* Light mode label */
+
+    .dark-mode-label {
+        display: none;
+    }
+
+
+    .light-mode-label {
+        display: inline;
+    }
+
+
+    /* DARK MODE */
+
+    body:has(.theme-toggle-checkbox:checked) {
+        background-color: #121212;
+
+        color: #e5e7eb;
+    }
+
+
+    /* Cards */
+
+    body:has(.theme-toggle-checkbox:checked) .profile-card {
+        background-color: #1e1e1e;
+
+        color: #e5e7eb;
+
+        border-color: #303030;
+
+        box-shadow:
+            0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+
+    /* Card headings */
+
+    body:has(.theme-toggle-checkbox:checked) .profile-card h2 {
+        color: #f5f5f5;
+    }
+
+
+    body:has(.theme-toggle-checkbox:checked) .profile-card h5 {
+        color: #f5f5f5;
+    }
+
+
+    /* Paragraphs */
+
+    body:has(.theme-toggle-checkbox:checked) .profile-card p {
+        color: #d1d5db;
+    }
+
+
+    /* Secondary headings */
+
+    body:has(.theme-toggle-checkbox:checked) .secondary-heading {
+        color: #f5f5f5;
+    }
+
+
+    /* Accent */
+
+    body:has(.theme-toggle-checkbox:checked) .accent {
+        color: #2dd4bf !important;
+    }
+
+
+    /* Skill background */
+
+    body:has(.theme-toggle-checkbox:checked) .skill-background {
+        background-color: #333333;
+    }
+
+
+    /* Skill progress */
+
+    body:has(.theme-toggle-checkbox:checked) .skill-progress {
+        background-color: #14b8a6;
+
+        color: #ffffff;
+    }
+
+
+    /* Horizontal rules */
+
+    body:has(.theme-toggle-checkbox:checked) .profile-card hr {
+        border-top-color: #3a3a3a;
+    }
+
+
+    /* Footer */
+
+    body:has(.theme-toggle-checkbox:checked) .profile-footer {
+        background-color: #0f766e;
+
+        color: #ffffff;
+    }
+
+
+    /* Toggle button */
+
+    body:has(.theme-toggle-checkbox:checked) .theme-toggle-button {
+        background-color: #262626;
+
+        color: #ffffff;
+
+        border-color: #444444;
+
+        box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+
+    /* Toggle text */
+
+    body:has(.theme-toggle-checkbox:checked) .light-mode-label {
+        display: none;
+    }
+
+
+    body:has(.theme-toggle-checkbox:checked) .dark-mode-label {
+        display: inline;
+    }
+
+
+    /* RESPONSIVE TABLET */
+
+    @media (max-width: 900px) {
+
+        .profile-grid {
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+    }
+
+
+    /*RESPONSIVE MOBILE*/
+
+    @media (max-width: 601px) {
+
+        .profile-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .profile-left,
+        .profile-right {
+            grid-template-rows: none;
+        }
+
+
+        .profile-image-container {
+            height: 300px;
+        }
+
+
+        .theme-toggle-button {
+            top: 10px;
+
+            right: 10px;
+
+            padding: 8px 12px;
+
+            font-size: 13px;
+        }
+
+    }
+
+
+    /*SMALL PHONE */
+
+    @media (max-width: 400px) {
+
+        .profile-image-container {
+            height: 260px;
+        }
+
+
+        .theme-toggle-button {
+            padding: 7px 10px;
+
+            font-size: 12px;
+        }
+
     }
 
 }
